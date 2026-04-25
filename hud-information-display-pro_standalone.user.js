@@ -20,14 +20,15 @@
         const script = document.createElement('script');
         script.src = hudUrl;
         document.head.appendChild(script);
-        console.log('GeoFS [Unified HUD]: Standalone module loaded.');
+        console.log('[GeoFS-V3.9_HUD-Information-Display-Pro] Standalone module script injected.');
     }
 
     // Wait for foundations then load
     const checker = setInterval(() => {
         if (window.SafeInit && document.getElementById('geofs-addon-design-system')) {
             clearInterval(checker);
-            loadHUD();
+            console.log('[GeoFS-V3.9_HUD-Information-Display-Pro] Foundations detected. Booting Pro UI...');
+            window.initHUDInformationDisplayPro();
         }
     }, 500);
 })();

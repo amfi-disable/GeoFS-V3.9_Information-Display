@@ -7,31 +7,35 @@
 (function() {
     'use strict';
 
-    window.initUnifiedHUD = function() {
+    window.initHUDInformationDisplayPro = function() {
+        console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Initializing core display system...");
         let isDragging = false, dragTarget = null, dragMoved = false, dragOffsetX = 0, dragOffsetY = 0;
-        globalThis.hudVisible = true; 
-        globalThis.hudMinimized = false;
-        globalThis.activeHudTab = globalThis.activeHudTab || 'id';
+        globalThis.hudProVisible = true; 
+        globalThis.hudProMinimized = false;
+        globalThis.activeHudProTab = globalThis.activeHudProTab || 'id';
 
         if (!window.realismSettings) {
+            console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Realism settings not found, initializing defaults.");
             window.realismSettings = { gBreath: true, cameraShake: true, blackout: true, propwash: true, fbw: true, wingflex: true };
         }
 
         function toggleHud() {
-            globalThis.hudMinimized = !globalThis.hudMinimized;
+            globalThis.hudProMinimized = !globalThis.hudProMinimized;
+            console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] UI state changed: minimized =", globalThis.hudProMinimized);
             const hud = document.getElementById('flightDataDisplay');
-            if (hud) hud.classList.toggle('hud-minimized', globalThis.hudMinimized);
+            if (hud) hud.classList.toggle('hud-minimized', globalThis.hudProMinimized);
             const btn = document.getElementById('hudMinimizeBtn');
             if (btn) { 
-                btn.innerHTML = globalThis.hudMinimized ? '◈' : '▣'; 
-                btn.title = globalThis.hudMinimized ? 'Restore info display' : 'Minimize info display'; 
+                btn.innerHTML = globalThis.hudProMinimized ? '◈' : '▣'; 
+                btn.title = globalThis.hudProMinimized ? 'Restore info display' : 'Minimize info display'; 
             }
         }
 
-        window.switchUnifiedTab = function (tabName) {
-            globalThis.activeHudTab = tabName;
-            globalThis.hudVisible = true;
-            globalThis.hudMinimized = false;
+        window.switchHUDProTab = function (tabName) {
+            console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Switching to tab:", tabName);
+            globalThis.activeHudProTab = tabName;
+            globalThis.hudProVisible = true;
+            globalThis.hudProMinimized = false;
             const panel = document.getElementById('flightDataDisplay');
             if (panel) panel.classList.remove('hud-minimized');
             document.querySelectorAll('#flightDataDisplay .unified-tab').forEach(t => t.classList.remove('active'));
@@ -66,6 +70,7 @@
         hudMinBtn.style.top = '50%'; 
         hudMinBtn.style.transform = 'translateY(-50%)';
         document.body.appendChild(hudMinBtn);
+        console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Minimize toggle created.");
         
         if (window.initAddonDraggable) {
             window.initAddonDraggable(hudMinBtn, 'geofs-addonpack-hud-icon-pos');
@@ -78,16 +83,17 @@
 
             let y = document.getElementById("flightDataDisplay");
             if (!y) {
+                console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Creating main display DOM elements.");
                 y = document.createElement("div");
                 y.id = "flightDataDisplay";
                 y.innerHTML = `
                     <div id="masterCaution" style="display:none; grid-column: 1 / -1; background: #ef4444; color: #fff; text-align: center; font-weight: 900; padding: 4px; border-radius: 6px; margin-bottom: 8px; animation: cautionPulse 1s infinite; letter-spacing: 2px; font-size: 10px; border: 1px solid #fff;">MASTER CAUTION</div>
-                    <div class="hud-drag-handle" style="font-size: 9px; letter-spacing: 2px; color: rgba(100,200,255,0.6);">GEOFS UNIFIED HUD</div>
+                    <div class="hud-drag-handle" style="font-size: 9px; letter-spacing: 2px; color: rgba(100,200,255,0.6);">GEOFS HUD PRO v3.9</div>
                     <div class="unified-tabs">
-                        <button id="tab-btn-id" class="unified-tab active" onclick="window.switchUnifiedTab('id')">ID DISPLAY</button>
-                        <button id="tab-btn-realism" class="unified-tab" onclick="window.switchUnifiedTab('realism')">REALISM</button>
-                        <button id="tab-btn-fuel" class="unified-tab" onclick="window.switchUnifiedTab('fuel')">FUEL</button>
-                        <button id="tab-btn-checks" class="unified-tab" onclick="window.switchUnifiedTab('checks')">CHECKS</button>
+                        <button id="tab-btn-id" class="unified-tab active" onclick="window.switchHUDProTab('id')">ID DISPLAY</button>
+                        <button id="tab-btn-realism" class="unified-tab" onclick="window.switchHUDProTab('realism')">REALISM</button>
+                        <button id="tab-btn-fuel" class="unified-tab" onclick="window.switchHUDProTab('fuel')">FUEL</button>
+                        <button id="tab-btn-checks" class="unified-tab" onclick="window.switchHUDProTab('checks')">CHECKS</button>
                     </div>
                     <div id="tab-content-id" class="unified-content active unified-grid">
                         <div class="hud-section-header full-width">Performance</div>
@@ -130,11 +136,11 @@
                 if (window.initAddonDraggable) {
                     window.initAddonDraggable(y, 'geofs-addonpack-hud-pos');
                 }
-                window.switchUnifiedTab(globalThis.activeHudTab);
+                window.switchHUDProTab(globalThis.activeHudProTab);
             }
 
-            if (hudMinBtn) hudMinBtn.style.display = globalThis.hudVisible ? 'flex' : 'none';
-            if (!globalThis.hudVisible || globalThis.hudMinimized || (geofs.isPaused && geofs.isPaused())) {
+            if (hudMinBtn) hudMinBtn.style.display = globalThis.hudProVisible ? 'flex' : 'none';
+            if (!globalThis.hudProVisible || globalThis.hudProMinimized || (geofs.isPaused && geofs.isPaused())) {
                 if (y) y.style.display = 'none';
                 return;
             } else {
@@ -176,8 +182,8 @@
     };
 
     if (window.SafeInit) {
-        window.SafeInit('Unified HUD', window.initUnifiedHUD);
+        window.SafeInit('GeoFS-V3.9_HUD-Information-Display-Pro', window.initHUDInformationDisplayPro);
     } else {
-        window.initUnifiedHUD();
+        window.initHUDInformationDisplayPro();
     }
 })();
