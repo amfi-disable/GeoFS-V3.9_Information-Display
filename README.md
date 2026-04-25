@@ -1,55 +1,36 @@
-# GeoFS HUD Information Display Pro v3.9
+# GeoFS-V3.9_HUD-Information-Display-Pro
 
-The **HUD Information Display Pro v3.9** is a premium telemetry and flight instrumentation suite for [GeoFS](https://www.geo-fs.com/). It transforms the simulator's UI into a professional-grade glass cockpit experience, leveraging the high-fidelity design language of the **[GeoFS v3.9 Addon-Pack](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Addon-Pack)**.
+![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
+![Ecosystem](https://img.shields.io/badge/GeoFS-V3.9_Addon--Pack-64c8ff?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Stable-green?style=for-the-badge)
 
----
+The central command and control interface for the **GeoFS v3.9** ecosystem. The HUD Pro is more than just a display; it is a sophisticated 4-tab management suite that synthesizes flight data, realism physics, fuel management, and interactive checklists into a single, high-performance overlay.
 
 ## ✨ Features
 
-### 🖥️ Advanced Glass UI
-- **Glassmorphic Aesthetic**: A sleek, high-contrast interface featuring modern backdrop-blur effects for maximum immersion.
-- **Draggable Multi-Panel**: Fully interactive UI that allows you to position your flight data anywhere on the screen.
-- **State Persistence**: Your preferred HUD position is automatically saved to local storage and restored every time you fly.
-- **Micro-Animations**: Smooth transitions and hover effects that provide a premium, reactive feel.
+- **📊 4-Tab Management UI**: Seamlessly switch between **Main**, **Realism**, **Fuel**, and **Checklist** tabs for total aircraft control.
+- **📈 Real-Time Data Visualization**: High-fidelity rendering of airspeed (KCAS), altitude, vertical speed, and precision load factor (G) metrics.
+- **🧩 Ecosystem Synthesis**: Built-in logic to detect and control companion modules like the [Failure Simulator](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Failure-Simulator) and [Realism Pack](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Realism-Pack).
+- **💎 Glassmorphic Design**: Utilizes the V3.9 Design System for a premium, translucent interface that remains readable in all lighting conditions.
+- **🚀 Advanced Boot Logging**: Detailed, branded console logs track the status of all ecosystem foundations during the initialization sequence.
 
-### 📊 Precision Flight Data
-- **Core Telemetry**: Real-time monitoring of Indicated Airspeed (IAS), Ground Speed (GS), Altitude (MSL), and Above Ground Level (AGL) height.
-- **Navigation Suite**: Digital Heading (HDG) and Vertical Speed (V/S) readouts with dynamic safety color-coding.
-- **Performance Metrics**: Live tracking of Thrust (THR), Angle of Attack (AOA), and G-Force.
-- **Unified Logic**: Powered by the verified **GeoFS-V3.9 Core Library** for pixel-perfect data accuracy.
+## 🛠️ Installation
 
-### 📑 Intelligent Tabbed Interface
-- **[MAIN]**: Essential flight data for all aircraft types.
-- **[AIRLINER]**: Specialized readouts for commercial aviation including Mach speed and precise flap configurations.
-- **[NAV]**: Dedicated navigation and routing information.
-- **[STATS]**: Comprehensive performance statistics and aircraft health monitoring.
+### Standalone (Tampermonkey)
+1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension.
+2. Click **Create a new script**.
+3. Paste the contents of `hud-information-display-pro_standalone.user.js` from this repository.
+4. Save and launch GeoFS.
 
----
+## 🔗 Ecosystem Dependencies
+This module is part of the **GeoFS-V3.9 Addon-Pack** ecosystem and requires:
+- [GeoFS-V3.9_Core-Library](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Core-Library)
+- [GeoFS-V3.9_Design-System](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Design-System)
 
-## 🔧 Installation Tutorial
-
-To use this display in GeoFS, you will need the **Tampermonkey** browser extension.
-
-### 1. Install Tampermonkey
-- **Chrome/Edge**: [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- **Firefox**: [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
-- **Safari**: [App Store](https://apps.apple.com/us/app/tampermonkey/id1459806926)
-
-### 2. Install the Script
-1. Click on the following link to view the standalone script: [hud-pro_standalone.user.js](./hud-pro_standalone.user.js)
-2. Copy the entire contents of the file.
-3. Open the **Tampermonkey Dashboard** in your browser.
-4. Click the **"+" (Plus)** icon to create a new script.
-5. Delete the default template and paste the copied code.
-6. Press `Ctrl+S` (or `Cmd+S`) to save.
-
-### 3. Start Flying
-Refresh GeoFS. Press **[ K ]** to toggle the HUD display. Use your mouse to drag the panel to your preferred location.
+## 🤝 Credits
+- **AwesomeOddEven** (Lead Interface & Ecosystem Logic)
+- **NightKeys** (Performance Optimization & QA)
+- **LunarBlink** (UI Aesthetics & Documentation)
 
 ---
-
-## 📦 Part of a Larger Ecosystem
-This standalone display is an integrated component of the **[GeoFS v3.9 Addon-Pack](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Addon-Pack)**. For the full experience, including modernized weather, graphics, and advanced failure simulation, check out the main repository.
-
----
-*Maintained by the GeoFS-V3.9 Development Team.*
+*© 2026 AwesomeOddEven-NightKeys-LunarBlink. Part of the GeoFS-V3.9 Pro Suite.*
