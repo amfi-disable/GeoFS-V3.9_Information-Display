@@ -1,5 +1,5 @@
 /**
- * GeoFS Unified HUD
+ * GeoFS-V3.9_HUD-Information-Display-Pro
  * The primary draggable information display for GeoFS.
  * Includes tabs for Flight Data, Realism toggles, Fuel management, and Checklists.
  */
