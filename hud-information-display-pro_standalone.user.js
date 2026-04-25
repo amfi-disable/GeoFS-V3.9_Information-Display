@@ -1,19 +1,19 @@
 // ==UserScript==
-// @name         GeoFS-V3.9_Unified-HUD
+// @name         GeoFS-V3.9_HUD-Information-Display-Pro
 // @namespace    http://tampermonkey.net/
-// @version      3.0.0
+// @version      1.0.0
 // @description  The core draggable information display (HUD) for GeoFS.
 // @author       AwesomeOddEven-NightKeys-LunarBlink
 // @match        https://www.geo-fs.com/geofs.php*
 // @match        https://*.geo-fs.com/geofs.php*
-// @require      https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Design-System/main/standalone.user.js
-// @require      https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Core-Library/main/standalone.user.js
+// @require      https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Design-System/main/design-system_standalone.user.js
+// @require      https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Core-Library/main/core-library_standalone.user.js
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
-    const hudUrl = 'https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Unified-HUD/main/src/hud.js';
+    const hudUrl = 'https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_HUD-Information-Display-Pro/main/hud-information-display-pro.js';
 
     function loadHUD() {
         if (document.getElementById('flightDataDisplay')) return;
