@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GeoFS-V3.9_HUD-Information-Display-Pro
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
+// @version      1.0.1
 // @description  The core draggable information display (HUD) for GeoFS.
 // @author       AwesomeOddEven-NightKeys-LunarBlink
 // @match        https://www.geo-fs.com/geofs.php*
@@ -16,7 +16,7 @@
     const hudUrl = 'https://raw.githack.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_HUD-Information-Display-Pro/main/hud-information-display-pro.js';
 
     function loadHUD() {
-        if (document.getElementById('flightDataDisplay')) return;
+        if (window.initHUDInformationDisplayPro) return;
         const script = document.createElement('script');
         script.src = hudUrl;
         document.head.appendChild(script);
@@ -28,7 +28,7 @@
         if (window.SafeInit && document.getElementById('geofs-addon-design-system')) {
             clearInterval(checker);
             console.log('[GeoFS-V3.9_HUD-Information-Display-Pro] Foundations detected. Booting Pro UI...');
-            window.initHUDInformationDisplayPro();
+            loadHUD();
         }
     }, 500);
 })();
