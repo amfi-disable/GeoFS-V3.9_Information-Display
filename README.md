@@ -2,7 +2,7 @@
 
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
 ![Ecosystem](https://img.shields.io/badge/GeoFS-V3.9_Addon--Pack-64c8ff?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Stable-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Construction-orange?style=for-the-badge)
 
 The central command and control interface for the **GeoFS v3.9** ecosystem. The HUD Pro is more than just a display; it is a sophisticated 4-tab management suite that synthesizes flight data, realism physics, fuel management, and interactive checklists into a single, high-performance overlay.
 
