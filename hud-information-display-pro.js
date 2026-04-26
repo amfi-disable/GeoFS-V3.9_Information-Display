@@ -1,16 +1,11 @@
-/**
- * GeoFS-V3.9_HUD-Information-Display-Pro
- * The primary draggable information display for GeoFS.
- */
-
 (function() {
     'use strict';
 
     window.initHUDInformationDisplayPro = function() {
         console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Initializing core display system...");
         
-        if (!window.registerHUDTab || !window.hudCell) {
-            console.error("[GeoFS-V3.9_HUD-Information-Display-Pro] Core Library HUD helpers not found!");
+        if (typeof window.registerHUDTab !== 'function' || typeof window.hudCell !== 'function') {
+            console.error("[GeoFS-V3.9_HUD-Information-Display-Pro] FATAL: HUD helpers not found on window! Core Library might be outdated.");
             return;
         }
 
