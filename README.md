@@ -10,7 +10,7 @@ The central command and control interface for the **GeoFS v3.9** ecosystem. The 
 
 - **📊 4-Tab Management UI**: Seamlessly switch between **Main**, **Realism**, **Fuel**, and **Checklist** tabs for total aircraft control.
 - **📈 Real-Time Data Visualization**: High-fidelity rendering of airspeed (KCAS), altitude, vertical speed, and precision load factor (G) metrics.
-- **🧩 Ecosystem Synthesis**: Built-in logic to detect and control companion modules like the [Failure Simulator](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Failure-Simulator) and [Realism Pack](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Realism-Pack).
+- **🧩 Ecosystem Synthesis**: Built-in logic to detect and control companion modules like the [Failure Simulator](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Failure-Simulator) and [Fuel Simulator](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Fuel-Simulator), [Checklist System](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Checklist-System-Pro), and [Realism Pack](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Realism-Pack).
 - **💎 Glassmorphic Design**: Utilizes the V3.9 Design System for a premium, translucent interface that remains readable in all lighting conditions.
 - **🚀 Advanced Boot Logging**: Detailed, branded console logs track the status of all ecosystem foundations during the initialization sequence.
 
