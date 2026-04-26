@@ -1,7 +1,6 @@
 /**
  * GeoFS-V3.9_HUD-Information-Display-Pro
  * The primary draggable information display for GeoFS.
- * Includes tabs for Flight Data, Realism toggles, Fuel management, and Checklists.
  */
 
 (function() {
@@ -9,6 +8,9 @@
 
     // Shared HUD Manager
     function ensureSharedHUD() {
+        if (!globalThis.hudProVisible) globalThis.hudProVisible = true;
+        if (globalThis.hudProMinimized === undefined) globalThis.hudProMinimized = false;
+
         if (!document.getElementById('hudMinimizeBtn')) {
             const btn = document.createElement('div');
             btn.id = 'hudMinimizeBtn';
@@ -32,7 +34,7 @@
             panel.innerHTML = `
                 <div id="masterCaution" style="display:none; grid-column: 1 / -1; background: #ef4444; color: #fff; text-align: center; font-weight: 900; padding: 4px; border-radius: 6px; margin-bottom: 8px; animation: cautionPulse 1s infinite; letter-spacing: 2px; font-size: 10px; border: 1px solid #fff;">MASTER CAUTION</div>
                 <div class="hud-drag-handle" style="font-size: 9px; letter-spacing: 2px; color: rgba(100,200,255,0.6);">GEOFS HUD PRO v3.9</div>
-                <div class="unified-tabs" id="hud-unified-tabs"></div>
+                <div class="unified-tabs" id="hud-unified-tabs" style="display: flex; width: 100%;"></div>
             `;
             document.body.appendChild(panel);
             if (window.initAddonDraggable) window.initAddonDraggable(panel, 'geofs-addonpack-hud-pos');
@@ -55,6 +57,27 @@
                 if (btn) btn.innerHTML = '▣';
             };
         }
+
+        // Visibility Controller
+        if (!window._hudVisibilityLoop) {
+            window._hudVisibilityLoop = setInterval(() => {
+                const btn = document.getElementById('hudMinimizeBtn');
+                const panel = document.getElementById('flightDataDisplay');
+                if (!btn || !panel) return;
+
+                const isVisible = globalThis.hudProVisible !== false;
+                const isMinimized = globalThis.hudProMinimized === true;
+                const isPaused = typeof geofs !== 'undefined' && geofs.isPaused && geofs.isPaused();
+
+                btn.style.display = isVisible ? 'flex' : 'none';
+                
+                if (!isVisible || isMinimized || isPaused) {
+                    panel.style.display = 'none';
+                } else {
+                    panel.style.display = 'grid';
+                }
+            }, 100);
+        }
     }
 
     function registerHUDTab(tabId, label, contentHTML, isGrid) {
@@ -65,6 +88,14 @@
             btn.id = `tab-btn-${tabId}`;
             btn.className = 'unified-tab';
             btn.textContent = label;
+            
+            // Tab ordering and sizing
+            const tabOrder = { 'id': 1, 'fuel': 2, 'checks': 3, 'realism': 4 };
+            btn.style.order = tabOrder[tabId] || 99;
+            btn.style.flex = '1';
+            btn.style.padding = '5px 2px';
+            btn.style.fontSize = '10px';
+
             btn.onclick = () => window.switchHUDProTab(tabId);
             tabsContainer.appendChild(btn);
         }
@@ -79,11 +110,13 @@
         }
 
         setTimeout(() => {
-            const firstTab = document.querySelector('#hud-unified-tabs .unified-tab');
+            const tabs = Array.from(document.querySelectorAll('#hud-unified-tabs .unified-tab'));
+            tabs.sort((a, b) => parseInt(a.style.order) - parseInt(b.style.order));
+            const firstTab = tabs[0];
             if (firstTab && !document.querySelector('.unified-tab.active')) {
-                firstTab.click();
+                window.switchHUDProTab(firstTab.id.replace('tab-btn-', ''));
             }
-        }, 100);
+        }, 200);
     }
 
     function hudCell(label, value, warnClass, idClass) { 
@@ -92,10 +125,7 @@
 
     window.initHUDInformationDisplayPro = function() {
         console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Initializing core display system...");
-        globalThis.hudProVisible = true; 
-        globalThis.hudProMinimized = false;
         
-        // Register ID Tab
         registerHUDTab('id', 'ID DISPLAY', `
             <div class="hud-section-header full-width">Performance</div>
             ${hudCell('KIAS', 'N/A', '', 'hud-kias')} ${hudCell('V/S', 'N/A', '', 'hud-vs')} ${hudCell('ALT', 'N/A', '', 'hud-alt')} ${hudCell('AGL', 'N/A', '', 'hud-agl')} ${hudCell('G-FORCE', 'N/A', '', 'hud-g')} ${hudCell('AOA', 'N/A', '', 'hud-aoa')}
@@ -103,20 +133,9 @@
             ${hudCell('HDG', 'N/A', '', 'hud-hdg')} ${hudCell('GS', 'N/A', '', 'hud-gs')} ${hudCell('MACH', 'N/A', '', 'hud-mach')} ${hudCell('GSLOPE', 'N/A', '', 'hud-gslope')}
         `, true);
 
-        // Main Loop
         setInterval(function () {
-            const hudMinBtn = document.getElementById('hudMinimizeBtn');
             const y = document.getElementById('flightDataDisplay');
-
-            if (hudMinBtn) hudMinBtn.style.display = globalThis.hudProVisible ? 'flex' : 'none';
-            if (!globalThis.hudProVisible || globalThis.hudProMinimized || (geofs.isPaused && geofs.isPaused())) {
-                if (y) y.style.display = 'none';
-                return;
-            } else {
-                if (y) y.style.display = 'grid';
-            }
-
-            // Update Logic
+            if (!y || y.style.display === 'none') return;
             const v = geofs.animation.values;
             if (!v) return;
 
