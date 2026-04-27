@@ -2,23 +2,42 @@
     'use strict';
 
     window.initHUDInformationDisplayPro = function() {
+        if (window.hudInformationDisplayPro) return;
+        
         console.log("[GeoFS-V3.9_HUD-Information-Display-Pro] Initializing core display system...");
         
         if (typeof window.registerHUDTab !== 'function' || typeof window.hudCell !== 'function') {
-            console.error("[GeoFS-V3.9_HUD-Information-Display-Pro] FATAL: HUD helpers not found on window! Core Library might be outdated.");
+            console.error("[GeoFS-V3.9_HUD-Information-Display-Pro] FATAL: HUD helpers not found on window! Core Library might be missing or failed.");
             return;
         }
 
-        window.registerHUDTab('id', 'ID DISPLAY', `
+        // Hardened: Ensure variables exist to avoid template literal errors
+        const safeCell = (l, v, w, i) => {
+            try { return window.hudCell(l, v, w, i); } catch(e) { return ""; }
+        };
+
+        const idHTML = `
             <div class="hud-section-header full-width">Performance</div>
-            ${window.hudCell('KIAS', 'N/A', '', 'hud-kias')} ${window.hudCell('V/S', 'N/A', '', 'hud-vs')} ${window.hudCell('ALT', 'N/A', '', 'hud-alt')} ${window.hudCell('AGL', 'N/A', '', 'hud-agl')} ${window.hudCell('G-FORCE', 'N/A', '', 'hud-g')} ${window.hudCell('AOA', 'N/A', '', 'hud-aoa')}
+            ${safeCell('KIAS', 'N/A', '', 'hud-kias')} 
+            ${safeCell('V/S', 'N/A', '', 'hud-vs')} 
+            ${safeCell('ALT', 'N/A', '', 'hud-alt')} 
+            ${safeCell('AGL', 'N/A', '', 'hud-agl')} 
+            ${safeCell('G-FORCE', 'N/A', '', 'hud-g')} 
+            ${safeCell('AOA', 'N/A', '', 'hud-aoa')}
             <div class="hud-section-header full-width">Navigation</div>
-            ${window.hudCell('HDG', 'N/A', '', 'hud-hdg')} ${window.hudCell('GS', 'N/A', '', 'hud-gs')} ${window.hudCell('MACH', 'N/A', '', 'hud-mach')} ${window.hudCell('GSLOPE', 'N/A', '', 'hud-gslope')}
-        `, true);
+            ${safeCell('HDG', 'N/A', '', 'hud-hdg')} 
+            ${safeCell('GS', 'N/A', '', 'hud-gs')} 
+            ${safeCell('MACH', 'N/A', '', 'hud-mach')} 
+            ${safeCell('GSLOPE', 'N/A', '', 'hud-gslope')}
+        `;
+        
+        window.registerHUDTab('id', 'ID DISPLAY', idHTML, true);
+        window.hudInformationDisplayPro = true;
 
         setInterval(function () {
             const y = document.getElementById('flightDataDisplay');
             if (!y || y.style.display === 'none') return;
+            
             const v = geofs.animation.values;
             if (!v) return;
 
@@ -41,6 +60,12 @@
     if (window.SafeInit) {
         window.SafeInit('GeoFS-V3.9_HUD-Information-Display-Pro', window.initHUDInformationDisplayPro);
     } else {
-        window.initHUDInformationDisplayPro();
+        // Fallback for direct load
+        const checker = setInterval(() => {
+            if (window.registerHUDTab && window.hudCell) {
+                clearInterval(checker);
+                window.initHUDInformationDisplayPro();
+            }
+        }, 100);
     }
 })();
