@@ -1,36 +1,27 @@
-# GeoFS-V3.9_HUD-Information-Display-Pro
+# GeoFS-V3.9_Information-Display
 
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
-![Ecosystem](https://img.shields.io/badge/GeoFS-V3.9_Addon--Pack-64c8ff?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-In%20Construction-orange?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v2.0.0-3b82f6?style=flat-square&logo=git&logoColor=white)
+![Ecosystem](https://img.shields.io/badge/GeoFS--V3.9-Information_Display-0ea5e9?style=flat-square&logo=gitbook&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Stable-10b981?style=flat-square&logo=lighthouse&logoColor=white)
 
-The central command and control interface for the **GeoFS v3.9** ecosystem. The HUD Pro is more than just a display; it is a sophisticated 4-tab management suite that synthesizes flight data, realism physics, fuel management, and interactive checklists into a single, high-performance overlay.
+The centralized glass-cockpit data framework for **GeoFS-V3.9**. This module provides a high-density, real-time overlay for critical flight parameters, navigation data, and ecosystem-wide module integration.
 
 ## ✨ Features
 
-- **📊 4-Tab Management UI**: Seamlessly switch between **Main**, **Realism**, **Fuel**, and **Checklist** tabs for total aircraft control.
-- **📈 Real-Time Data Visualization**: High-fidelity rendering of airspeed (KCAS), altitude, vertical speed, and precision load factor (G) metrics.
-- **🧩 Ecosystem Synthesis**: Built-in logic to detect and control companion modules like the [Failure Simulator](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Failure-Simulator) and [Fuel Simulator](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Fuel-Simulator), [Checklist System](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Checklist-System-Pro), and [Realism Pack](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Realism-Pack).
-- **💎 Glassmorphic Design**: Utilizes the V3.9 Design System for a premium, translucent interface that remains readable in all lighting conditions.
-- **🚀 Advanced Boot Logging**: Detailed, branded console logs track the status of all ecosystem foundations during the initialization sequence.
+- **🔍 Live Aircraft Identification**: Real-time display of the current aircraft name and GeoFS ID badge.
+- **✨ Active HUD Telemetry**: Dynamic color-coded values for V/S, G-Force, and AOA based on flight state.
+- **📈 Speed Trend Indicators**: Visual micro-icons (▲/▼) showing real-time acceleration and deceleration.
+- **📊 High-Density Performance**: Optimized grouping of KIAS, Mach, and Envelope data for professional simulation.
+- **🧩 Module Hub**: Serves as the primary UI host for Checklist, Fuel, and Realism subsystems.
+- **🛡️ Apex Design System**: Uses the V3.9 glassmorphic aesthetic for maximum readability and immersion.
+- **🚀 CDN Loader Architecture**: Instant updates via a lightweight loader pattern, ensuring you always have the latest display features.
 
 ## 🛠️ Installation
 
 ### Standalone (Tampermonkey)
+
 1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension.
-2. Click **Create a new script**.
-3. Paste the contents of `hud-information-display-pro_standalone.user.js` from this repository.
-4. Save and launch GeoFS.
+2. Install the script via [**Greasy Fork**](https://greasyfork.org/en/scripts/581518-geofs-v3-9-information-display).
+3. Refresh GeoFS and the HUD will automatically initialize on the right side of the screen.
 
-## 🔗 Ecosystem Dependencies
-This module is part of the **GeoFS-V3.9 Addon-Pack** ecosystem and requires:
-- [GeoFS-V3.9_Core-Library](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Core-Library)
-- [GeoFS-V3.9_Design-System](https://github.com/AwesomeOddEven-NightKeys-LunarBlink/GeoFS-V3.9_Design-System)
-
-## 🤝 Credits
-- **AwesomeOddEven** (Lead Interface & Ecosystem Logic)
-- **NightKeys** (Performance Optimization & QA)
-- **LunarBlink** (UI Aesthetics & Documentation)
-
----
-*© 2026 AwesomeOddEven-NightKeys-LunarBlink. Part of the GeoFS-V3.9 Pro Suite.*
+*© 2026 _init. Part of the [GeoFS-V3.9_Ecosystem](https://sites.google.com/view/geofs-v39-ecosystem/home).*
